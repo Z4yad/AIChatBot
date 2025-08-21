@@ -1,0 +1,75 @@
+[
+  {
+    "id": "HD-001",
+    "title": "Unable to reset password",
+    "description": "Customer is unable to reset their password using the forgot password link. They report that no email is being received even after multiple attempts.",
+    "category": "Authentication",
+    "priority": "High",
+    "status": "Resolved",
+    "created_date": "2024-08-15T10:30:00Z",
+    "resolved_date": "2024-08-15T14:45:00Z",
+    "customer_id": "CUST-12345",
+    "tags": ["password", "authentication", "email"],
+    "resolution": "Issue was caused by email filters. Customer was advised to check spam folder and add our domain to safe sender list. Password reset completed successfully."
+  },
+  {
+    "id": "HD-002", 
+    "title": "Product sync failing between systems",
+    "description": "Our e-commerce platform is not syncing product inventory with the warehouse management system. This is causing overselling issues.",
+    "category": "Integration",
+    "priority": "Critical",
+    "status": "In Progress",
+    "created_date": "2024-08-18T09:15:00Z",
+    "customer_id": "CUST-67890",
+    "tags": ["integration", "inventory", "sync", "api"],
+    "updates": [
+      {
+        "date": "2024-08-18T11:00:00Z",
+        "note": "Engineering team identified API rate limiting as potential cause"
+      },
+      {
+        "date": "2024-08-19T14:30:00Z", 
+        "note": "Implementing retry logic with exponential backoff"
+      }
+    ]
+  },
+  {
+    "id": "HD-003",
+    "title": "Dashboard loading slowly",
+    "description": "The analytics dashboard is taking 30+ seconds to load. This is affecting daily reporting workflows.",
+    "category": "Performance",
+    "priority": "Medium",
+    "status": "Resolved",
+    "created_date": "2024-08-12T16:20:00Z",
+    "resolved_date": "2024-08-14T12:00:00Z",
+    "customer_id": "CUST-54321",
+    "tags": ["performance", "dashboard", "analytics"],
+    "resolution": "Optimized database queries and implemented caching. Dashboard now loads in under 3 seconds."
+  },
+  {
+    "id": "HD-004",
+    "title": "Mobile app crashes on iOS 17",
+    "description": "Multiple users reporting app crashes when trying to upload photos on iOS 17 devices. Crash occurs immediately after photo selection.",
+    "category": "Mobile",
+    "priority": "High",
+    "status": "Open",
+    "created_date": "2024-08-20T08:45:00Z",
+    "customer_id": "CUST-98765",
+    "tags": ["mobile", "ios", "crash", "photos"],
+    "affected_versions": ["iOS 17.0", "iOS 17.1"],
+    "device_models": ["iPhone 14", "iPhone 15", "iPhone 15 Pro"]
+  },
+  {
+    "id": "HD-005",
+    "title": "Payment processing delays",
+    "description": "Customers reporting that credit card payments are taking 24-48 hours to process instead of the usual instant processing.",
+    "category": "Payments",
+    "priority": "Critical",
+    "status": "Escalated",
+    "created_date": "2024-08-19T13:10:00Z",
+    "customer_id": "CUST-11111",
+    "tags": ["payments", "credit-card", "processing", "delays"],
+    "escalated_to": "Payment Operations Team",
+    "affected_payment_methods": ["Visa", "Mastercard", "American Express"]
+  }
+]

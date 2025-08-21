@@ -1,0 +1,133 @@
+[
+  {
+    "id": 12345,
+    "url": "https://company.zendesk.com/api/v2/tickets/12345.json",
+    "subject": "API Rate Limiting Documentation Clarification",
+    "description": "Hi, I'm trying to understand the rate limiting policies for your REST API. The documentation mentions 1000 requests per hour, but I'm getting rate limited after only 500 requests. Could you clarify the actual limits and if there are different tiers?",
+    "status": "solved",
+    "priority": "normal",
+    "type": "question",
+    "submitter_id": 98765,
+    "assignee_id": 11223,
+    "organization_id": 44556,
+    "group_id": 77889,
+    "created_at": "2024-08-15T14:30:00Z",
+    "updated_at": "2024-08-16T09:45:00Z",
+    "tags": ["api", "rate-limiting", "documentation"],
+    "custom_fields": [
+      {"id": 123, "value": "Enterprise"},
+      {"id": 456, "value": "API Support"}
+    ],
+    "comments": [
+      {
+        "id": 1001,
+        "body": "Thank you for reaching out! You're right that there's some confusion in our documentation. The 1000/hour limit applies to our Premium API tier, while the standard tier is limited to 500/hour. I'll update our docs to make this clearer.",
+        "author_id": 11223,
+        "created_at": "2024-08-15T16:15:00Z",
+        "public": true
+      },
+      {
+        "id": 1002, 
+        "body": "Additionally, you can upgrade to Premium API access through your account dashboard. Premium users also get burst capacity up to 2000 requests in a 5-minute window.",
+        "author_id": 11223,
+        "created_at": "2024-08-15T16:20:00Z",
+        "public": true
+      }
+    ]
+  },
+  {
+    "id": 12346,
+    "subject": "Webhook Payload Format Changes",
+    "description": "We noticed that webhook payloads for order events have changed format recently. Our integration is now failing because we're expecting the old 'order_id' field but receiving 'orderId' instead. Was this change documented anywhere?",
+    "status": "open",
+    "priority": "high", 
+    "type": "incident",
+    "submitter_id": 87654,
+    "assignee_id": 11224,
+    "created_at": "2024-08-18T10:20:00Z",
+    "updated_at": "2024-08-19T11:30:00Z",
+    "tags": ["webhooks", "integration", "breaking-change"],
+    "comments": [
+      {
+        "id": 1003,
+        "body": "I apologize for the confusion. This was indeed a breaking change that should have been communicated better. We're preparing a migration guide and will revert to the old format temporarily while giving proper notice.",
+        "author_id": 11224,
+        "created_at": "2024-08-18T14:45:00Z",
+        "public": true
+      }
+    ]
+  },
+  {
+    "id": 12347,
+    "subject": "SDK Authentication Issues with OAuth 2.0",
+    "description": "I'm implementing OAuth 2.0 authentication using your Python SDK version 2.1.0, but I keep getting 'invalid_client' errors even though my client ID and secret are correct. The error occurs during the token exchange step.",
+    "status": "pending",
+    "priority": "normal",
+    "type": "question",
+    "submitter_id": 76543,
+    "assignee_id": 11225,
+    "created_at": "2024-08-19T09:10:00Z",
+    "updated_at": "2024-08-19T15:20:00Z",
+    "tags": ["oauth", "python-sdk", "authentication"],
+    "comments": [
+      {
+        "id": 1004,
+        "body": "Can you confirm you're using the correct OAuth endpoint? The SDK 2.1.0 defaults to our v2 OAuth endpoint. Also, make sure your redirect URI exactly matches what's configured in your app settings.",
+        "author_id": 11225,
+        "created_at": "2024-08-19T11:30:00Z",
+        "public": true
+      }
+    ]
+  },
+  {
+    "id": 12348,
+    "subject": "Database Connection Timeouts in Production",
+    "description": "We're experiencing frequent database connection timeouts in our production environment. This started happening after we scaled up to handle more traffic. Connection pool seems to be exhausted. Looking for guidance on optimal connection pool settings.",
+    "status": "solved",
+    "priority": "urgent",
+    "type": "incident", 
+    "submitter_id": 65432,
+    "assignee_id": 11226,
+    "created_at": "2024-08-14T22:30:00Z",
+    "updated_at": "2024-08-15T08:45:00Z",
+    "tags": ["database", "performance", "connection-pool"],
+    "comments": [
+      {
+        "id": 1005,
+        "body": "For high-traffic applications, we recommend setting max_connections to 100-200 and connection_timeout to 30 seconds. Also implement connection retry logic with exponential backoff.",
+        "author_id": 11226,
+        "created_at": "2024-08-15T01:15:00Z",
+        "public": true
+      },
+      {
+        "id": 1006,
+        "body": "We've also published a best practices guide for database optimization at docs.company.com/database-optimization",
+        "author_id": 11226,
+        "created_at": "2024-08-15T01:20:00Z",
+        "public": true
+      }
+    ]
+  },
+  {
+    "id": 12349,
+    "subject": "Feature Request: Bulk Export API",
+    "description": "Would it be possible to add a bulk export API endpoint? We need to export large datasets (100k+ records) for analytics purposes, but the current pagination-based approach is too slow and sometimes times out.",
+    "status": "open",
+    "priority": "low",
+    "type": "feature_request",
+    "submitter_id": 54321,
+    "assignee_id": 11227,
+    "created_at": "2024-08-17T16:45:00Z",
+    "updated_at": "2024-08-18T10:20:00Z",
+    "tags": ["feature-request", "api", "bulk-export"],
+    "comments": [
+      {
+        "id": 1007,
+        "body": "Thanks for the suggestion! This is actually on our roadmap for Q4 2024. The bulk export API will support asynchronous job processing with email notifications when exports are ready.",
+        "author_id": 11227,
+        "created_at": "2024-08-17T18:30:00Z",
+        "public": true
+      }
+    ]
+  }
+]
