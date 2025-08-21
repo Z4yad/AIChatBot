@@ -378,11 +378,18 @@ async def upload_file(
                 detail=f"Unsupported file type. Allowed: {', '.join(allowed_extensions)}"
             )
         
-        # Create temporary file
+        # Create temporary file and stream upload to disk to avoid loading into memory
         with tempfile.NamedTemporaryFile(delete=False, suffix=file_extension) as temp_file:
-            content = await file.read()
-            temp_file.write(content)
             temp_file_path = temp_file.name
+            # Stream in chunks
+            while True:
+                chunk = await file.read(1024 * 1024)
+                if not chunk:
+                    break
+                temp_file.write(chunk)
+
+        # Compute file size from disk for reliability
+        file_size = os.path.getsize(temp_file_path)
         
         # Process tags
         tag_list = []
@@ -429,7 +436,7 @@ async def upload_file(
             "message": f"File '{file.filename}' uploaded successfully and is being processed",
             "task_id": task_id,
             "file_name": file.filename,
-            "file_size": len(content)
+            "file_size": file_size
         }
         
     except HTTPException:

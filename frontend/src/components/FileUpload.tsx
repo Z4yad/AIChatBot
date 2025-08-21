@@ -255,8 +255,8 @@ const FileUpload: React.FC<FileUploadProps> = ({ onUploadComplete }) => {
       }
     }
     
-    if (file.size > 10 * 1024 * 1024) { // 10MB limit
-      return 'File size must be less than 10MB';
+    if (file.size > 200 * 1024 * 1024) { // 200MB limit
+      return 'File size must be less than 200MB';
     }
     
     return null;
@@ -294,17 +294,33 @@ const FileUpload: React.FC<FileUploadProps> = ({ onUploadComplete }) => {
       const endpoint = activeTab === 'file' ? '/upload/file' : '/upload/json';
       const apiUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000';
       
-      const response = await fetch(`${apiUrl}${endpoint}`, {
-        method: 'POST',
-        body: formData,
+      // Use XMLHttpRequest for upload progress and better large-file handling
+      const xhr = new XMLHttpRequest();
+      await new Promise<void>((resolve, reject) => {
+        xhr.open('POST', `${apiUrl}${endpoint}`);
+        xhr.upload.onprogress = (event) => {
+          if (event.lengthComputable) {
+            const pct = Math.round((event.loaded / event.total) * 100);
+            setUploadProgress(pct);
+          }
+        };
+        xhr.onload = () => {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            resolve();
+          } else {
+            try {
+              const errorData = JSON.parse(xhr.responseText);
+              reject(new Error(errorData.detail || 'Upload failed'));
+            } catch (e) {
+              reject(new Error('Upload failed'));
+            }
+          }
+        };
+        xhr.onerror = () => reject(new Error('Network error'));
+        xhr.send(formData);
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.detail || 'Upload failed');
-      }
-
-      const result = await response.json();
+      const result = JSON.parse(xhr.responseText);
       setUploadProgress(100);
       setStatusMessage({ 
         type: 'success', 
