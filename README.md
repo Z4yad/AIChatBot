@@ -1,199 +1,280 @@
-# AI Support Chatbot MVP
+# 🤖 AI Support Chatbot
 
-A configurable AI-powered support chatbot that ingests data from Zendesk, Jira, and product documentation to provide intelligent customer support responses.
+A beautiful, modern AI-powered support chatbot with **NotebookLM-inspired UI** that provides intelligent responses using your uploaded documents as context.
 
-## Features
+![AI Support Chatbot](https://img.shields.io/badge/AI-Support%20Chatbot-blue?style=for-the-badge)
+![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.104-009688?style=for-the-badge&logo=fastapi)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript)
 
-- **Multi-source Data Ingestion**: Zendesk tickets, Jira tickets, PDF/Word documents
-- **Configurable LLM Backend**: Switch between Ollama (local) and OpenAI APIs
-- **Version-aware Responses**: Different answers based on product versions
-- **Vector Search**: Semantic similarity search with fallback handling
-- **REST API**: FastAPI backend with chat endpoints
-- **React Widget**: Frontend chat interface with source citations
-- **Feedback System**: Thumbs up/down for response quality
+## ✨ Features
 
-## Architecture
+### 🎨 **NotebookLM-Inspired Design**
+- **Authentic Google design language** with professional dark theme
+- **Google Sans typography** throughout the interface  
+- **Signature color palette** (#8ab4f8, #34a853, #fbbc04, #ea4335)
+- **Advanced glassmorphism** with 40px backdrop blur and enhanced saturation
+- **Smooth animations** using Google's cubic-bezier timing functions
+
+### 📁 **Smart Document Management**
+- **Upload multiple file types**: PDF, Word (.docx), Text (.txt), Markdown (.md)
+- **Intelligent document grouping**: No duplicate chunks, clean unified view
+- **Source filtering**: Select specific documents for targeted responses
+- **Real-time management**: Add, view, and delete documents instantly
+
+### 💬 **Advanced AI Chat**
+- **Context-aware responses** using your uploaded documents
+- **Grouped confidence results** by original document (no chunk duplication)
+- **Source citations** with confidence scores
+- **Fallback handling** for queries outside document scope
+- **Conversation memory** within sessions
+
+### 🔧 **Technical Excellence**
+- **Vector similarity search** with Weaviate database
+- **Semantic document chunking** for optimal retrieval
+- **Local LLM processing** with Ollama (Llama 3.1)
+- **Containerized architecture** for easy deployment
+- **Production-ready** with health checks and monitoring
+
+## 🏗️ Architecture
 
 ```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Data Sources  │    │   Backend API   │    │   Frontend      │
-│                 │    │                 │    │                 │
-│ • Zendesk       │───▶│ • FastAPI       │◀───│ • React Widget  │
-│ • Jira          │    │ • Vector Search │    │ • Chat UI       │
-│ • PDF/Word      │    │ • LLM Router    │    │ • Feedback      │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                              │
-                              ▼
-                       ┌─────────────────┐
-                       │   Vector DB     │
-                       │ • Pinecone      │
-                       │ • Weaviate      │
-                       └─────────────────┘
+┌─────────────────────┐    ┌──────────────────────┐    ┌─────────────────────┐    ┌──────────────────┐
+│   Frontend (React)  │    │  Backend (FastAPI)   │    │  Vector DB (Weaviate) │    │  LLM (Ollama)    │
+│                     │    │                      │    │                     │    │                  │
+│ ✨ NotebookLM UI    │◄──►│ 🚀 Smart APIs       │◄──►│ 🧠 Vector Storage   │◄──►│ 🤖 Llama 3.1    │
+│ 📁 Document Groups  │    │ 📊 Source Grouping   │    │ 🔍 Semantic Search  │    │ 💭 Local LLM     │
+│ 💬 Chat Interface   │    │ 📤 File Processing   │    │ 📈 Similarity Rank  │    │ 🔒 Privacy First │
+│ 📖 Source Citations │    │ 🎯 Confidence Scores │    │ ⚡ Fast Retrieval   │    │                  │
+└─────────────────────┘    └──────────────────────┘    └─────────────────────┘    └──────────────────┘
 ```
 
-## Tech Stack
+### **Key Design Principles**
+- 🎨 **NotebookLM aesthetic** for professional, Google-like experience
+- 📚 **Document-first approach** with intelligent grouping and source management
+- 🔗 **Seamless integration** between all components for smooth user experience
+- 🛡️ **Privacy-focused** with local LLM processing and no external data sharing
 
-### Backend
-- **Framework**: FastAPI (Python)
-- **LLM**: Configurable (Ollama local / OpenAI API)
-- **Embeddings**: nomic-embed-text (local) / OpenAI embeddings
-- **Vector DB**: Pinecone or Weaviate
-- **Document Parsing**: PyMuPDF, python-docx, Unstructured
+## 🛠️ Tech Stack
 
-### Frontend
-- **Framework**: React
-- **UI**: Chat widget component
+### **Frontend**
+- **React 18** with TypeScript for type safety
+- **Google Sans** typography for authentic NotebookLM feel
+- **Advanced CSS** with glassmorphism and backdrop filters
+- **Responsive design** optimized for chat interfaces
+
+### **Backend**  
+- **FastAPI** for high-performance async APIs
+- **Weaviate** vector database for semantic search
+- **Ollama** for local LLM processing (Llama 3.1)
+- **Python** document processing with chunking algorithms
+
+### **DevOps**
+- **Docker Compose** for easy development setup
+- **Pydantic** for robust data validation
+- **Uvicorn** ASGI server for production deployment
+- **CORS** configured for secure cross-origin requests
 
 ### Deployment
 - **Containerization**: Docker
 - **Platform**: Render/AWS/GCP
 
-## Quick Start
+## 🚀 Quick Start
 
-### 1. Environment Setup
+### **Prerequisites**
+- Docker and Docker Compose
+- Node.js 16+ (for frontend development)
+- Python 3.9+ (for backend development)
 
+### **1. Clone the Repository**
 ```bash
-# Clone and enter directory
-cd ai-support-chatbot
+git clone https://github.com/Z4yad/AIChatBot.git
+cd AIChatBot
+```
 
-# Install backend dependencies
+### **2. Start All Services**
+```bash
+# Launch the complete stack
+docker-compose up --build
+
+# Or run in background
+docker-compose up -d --build
+```
+
+### **3. Access Your AI Chatbot**
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:8000
+- **API Documentation**: http://localhost:8000/docs
+
+### **4. Upload Documents & Start Chatting**
+1. Upload your PDF, Word, or text documents
+2. Wait for processing and indexing
+3. Start asking questions about your content
+4. Enjoy the NotebookLM-inspired experience!
+
+## ⚙️ Development Setup
+
+### **For Advanced Development**
+
+If you want to run components separately for development:
+
+#### **Backend Development**
+```bash
 cd backend
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
 
-# Install frontend dependencies
-cd ../frontend
+#### **Frontend Development**  
+```bash
+cd frontend
 npm install
-```
-
-### 2. Configuration
-
-Copy and configure environment files:
-
-```bash
-# Backend configuration
-cp backend/.env.example backend/.env
-# Edit backend/.env with your API keys and settings
-
-# Frontend configuration  
-cp frontend/.env.example frontend/.env
-# Edit frontend/.env with backend URL
-```
-
-### 3. Local Development (Ollama)
-
-```bash
-# Install Ollama
-curl -fsSL https://ollama.ai/install.sh | sh
-
-# Pull Llama 3.2 model
-ollama pull llama3.2
-
-# Start backend (uses local models by default)
-cd backend
-uvicorn main:app --reload
-
-# Start frontend
-cd ../frontend
 npm start
 ```
 
-### 4. Production Setup (OpenAI)
+#### **Install Ollama (for local LLM)**
+```bash
+# macOS/Linux
+curl -fsSL https://ollama.ai/install.sh | sh
 
-Update backend/.env:
-```env
-LLM_PROVIDER=openai
-EMBEDDING_PROVIDER=openai
-OPENAI_API_KEY=your_openai_key
+# Pull the model
+ollama pull llama3.1
+
+# Verify installation
+ollama list
 ```
 
-## Configuration
+## 🔧 Configuration
 
-### LLM Provider Switching
-
-The system supports easy switching between LLM providers via environment variables:
+### **Environment Variables**
+Create `.env` files in backend directory:
 
 ```env
-# Local development with Ollama
+# LLM Configuration
 LLM_PROVIDER=ollama
 EMBEDDING_PROVIDER=local
-OLLAMA_MODEL=llama3.2
+OLLAMA_MODEL=llama3.1
 
-# Production with OpenAI
-LLM_PROVIDER=openai
-EMBEDDING_PROVIDER=openai
-OPENAI_API_KEY=your_key_here
-OPENAI_MODEL=gpt-4o-mini
-```
-
-### Vector Database
-
-Choose between Pinecone (managed) or Weaviate (self-hosted):
-
-```env
-# Pinecone (recommended for production)
-VECTOR_DB=pinecone
-PINECONE_API_KEY=your_key
-PINECONE_ENVIRONMENT=your_env
-
-# Weaviate (self-hosted)
-VECTOR_DB=weaviate
+# Vector Database
 WEAVIATE_URL=http://localhost:8080
+WEAVIATE_API_KEY=optional
+
+# API Settings  
+CORS_ORIGINS=http://localhost:3000
+DEBUG=true
 ```
 
-## API Documentation
+## 📚 API Documentation
 
-### Chat Endpoint
-
+### **Chat Endpoint**
 ```http
 POST /chat
 Content-Type: application/json
 
 {
-  "userId": "user123",
-  "query": "How do I reset my password?",
-  "productVersion": "v3.2"
+  "user_id": "user123",
+  "query": "How do I use this feature?",
+  "document_ids": ["doc1", "doc2"]
 }
 ```
 
-Response:
+**Response:**
 ```json
 {
-  "answer": "To reset your password, go to Settings > Account > Reset Password...",
+  "answer": "Based on your documents...",
   "sources": [
     {
-      "doc_title": "User Guide v3.2",
-      "section": "Account Management",
-      "confidence": 0.92
+      "document_title": "User Guide.pdf",
+      "confidence": 0.95,
+      "content": "Relevant excerpt..."
     }
   ],
-  "conversation_id": "conv_123"
+  "conversation_id": "conv_456"
 }
 ```
 
-### Data Ingestion
-
+### **Document Upload**
 ```http
-POST /ingest/zendesk
-POST /ingest/jira  
-POST /ingest/documents
+POST /upload
+Content-Type: multipart/form-data
+
+file: <your-document.pdf>
 ```
 
-## Deployment
+### **Document Management**
+```http
+GET /documents          # List all documents
+DELETE /documents/{id}  # Remove document
+```
 
-### Docker
+## 🎨 Design Highlights
 
+### **NotebookLM-Inspired Interface**
+- **Authentic Google design** with carefully selected color palette
+- **Typography**: Google Sans font family throughout
+- **Glassmorphism**: Advanced backdrop filters and blur effects
+- **Micro-interactions**: Smooth hover states and transitions
+- **Dark theme**: Professional appearance with proper contrast ratios
+
+### **Smart Document Grouping**
+- **Unified document view**: No more scattered chunks
+- **Intelligent aggregation**: Groups by document title and type
+- **Source management**: Clean, organized document selection
+- **Confidence scoring**: Shows relevance with max confidence per document
+## 🚀 Deployment
+
+### **Production Deployment**
+
+#### **Using Docker (Recommended)**
 ```bash
-# Build and run with Docker Compose
-docker-compose up --build
+# Build and deploy
+docker-compose -f docker-compose.prod.yml up -d --build
+
+# Scale services
+docker-compose up --scale backend=3
 ```
 
-### Environment Variables
+#### **Environment Configuration for Production**
+```env
+# Production settings
+DEBUG=false
+LLM_PROVIDER=ollama
+OLLAMA_BASE_URL=http://ollama:11434
+WEAVIATE_URL=http://weaviate:8080
 
-See `.env.example` files for complete configuration options.
-
-## Project Structure
-
+# Security
+CORS_ORIGINS=https://yourdomain.com
+ALLOWED_HOSTS=yourdomain.com,www.yourdomain.com
 ```
+
+### **Cloud Deployment Options**
+- **AWS**: ECS, EC2, or Elastic Beanstalk
+- **Google Cloud**: Cloud Run, GKE, or Compute Engine  
+- **Azure**: Container Instances or App Service
+- **Render**: Direct Docker deployment support
+
+## 📄 License
+
+MIT License - feel free to use this project for your own applications!
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📞 Support
+
+For questions or support, please open an issue on GitHub or contact the maintainers.
+
+---
+
+**Built with ❤️ using React, FastAPI, and the power of local AI models**
 ai-support-chatbot/
 ├── backend/                    # FastAPI backend service
 │   ├── app/
